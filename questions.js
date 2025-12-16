@@ -1,32 +1,12 @@
-/* ================================
-   PRODUCT EVALUATION QUESTIONS
-================================ */
+// PRODUCT EVALUATION QUESTIONS
 const evaluationQuestions = [
-  {
-    q: "Product type?",
-    options: ["Plastic", "Paper", "Metal", "Glass"],
-    scores: [5, 15, 25, 30] // Higher score = more eco friendly
-  },
-  {
-    q: "Reusability?",
-    options: ["Single-use", "Limited reuse", "Fully reusable"],
-    scores: [0, 10, 25]
-  },
-  {
-    q: "Recyclability?",
-    options: ["Not recyclable", "Partially recyclable", "Fully recyclable"],
-    scores: [0, 10, 25]
-  },
-  {
-    q: "Packaging type?",
-    options: ["Plastic-heavy", "Mixed", "Eco-friendly"],
-    scores: [0, 10, 20]
-  }
+  { q: "Product type?", options: ["Plastic", "Paper", "Metal", "Glass"], scores: [5, 15, 25, 30] },
+  { q: "Reusability?", options: ["Single-use", "Limited reuse", "Fully reusable"], scores: [0, 10, 25] },
+  { q: "Recyclability?", options: ["Not recyclable", "Partially recyclable", "Fully recyclable"], scores: [0, 10, 25] },
+  { q: "Packaging type?", options: ["Plastic-heavy", "Mixed", "Eco-friendly"], scores: [0, 10, 20] }
 ];
 
-/* ================================
-   RAPID FIRE QUIZ – 50 QUESTIONS
-================================ */
+// RAPID FIRE QUIZ – 50 QUESTIONS
 const quizQuestions = [
   { q: "Plastic can take hundreds of years to decompose.", a: true },
   { q: "Glass can be recycled infinitely without quality loss.", a: true },
