@@ -1,17 +1,17 @@
 let qIndex = 0;
 let totalScore = 0;
-
 const screens = document.querySelectorAll(".screen");
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const progressEl = document.getElementById("progress");
 
+/* SHOW SCREEN */
 function showScreen(id){
   screens.forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-/* PRODUCT QUESTIONS */
+/* LOAD PRODUCT QUESTIONS */
 function loadQuestion(){
   const q = evaluationQuestions[qIndex];
   questionEl.textContent = q.q;
@@ -24,37 +24,32 @@ function loadQuestion(){
       totalScore += q.scores[i];
       qIndex++;
       if(qIndex<evaluationQuestions.length) loadQuestion();
-      else setTimeout(showEnvironment,400);
-    }
+      else setTimeout(showTree,400);
+    };
     optionsEl.appendChild(btn);
   });
 
   progressEl.textContent = `Step ${qIndex+1} of ${evaluationQuestions.length}`;
 }
 
-/* ENVIRONMENT RESULT */
-function showEnvironment(){
+/* SHOW TREE RESULT */
+function showTree(){
   showScreen("screen-tree");
-
   const maxScore = evaluationQuestions.reduce((sum,q)=>sum+Math.max(...q.scores),0);
   const ecoScore = Math.round((totalScore/maxScore)*100);
 
-  const plant = document.querySelector(".plant");
-  const sun = document.querySelector(".sun");
-  const birds = document.querySelector(".birds");
+  const trunkHeight = 40 + (ecoScore/100)*200;
+  const leafSize = 60 + (ecoScore/100)*150;
 
-  plant.style.height = 20 + ecoScore + "px";
-  plant.style.backgroundColor = ecoScore>=30?"#2e7d32":"#4f7942";
-  plant.querySelector("::after")?.remove();
+  document.documentElement.style.setProperty("--trunk-height", trunkHeight+"px");
+  document.documentElement.style.setProperty("--leaf-size", leafSize+"px");
 
-  sun.style.opacity = ecoScore>=50?1:0;
-  sun.style.width = ecoScore>=50?"40px":"0px";
-  sun.style.height = ecoScore>=50?"40px":"0px";
-
-  birds.style.opacity = ecoScore>=80?1:0;
+  const leaves = document.querySelector(".leaves");
+  leaves.classList.toggle("glow", ecoScore>=75);
 
   document.getElementById("eco-score").textContent = `Eco Score: ${ecoScore}/100`;
-  document.getElementById("recommendation").textContent = ecoScore<60?"Try reusable products and minimal packaging 🌿":"Great eco-friendly choice 🌟";
+  document.getElementById("recommendation").textContent =
+    ecoScore<60 ? "Try reusable products and minimal packaging 🌿" : "Great eco-friendly choice 🌟";
 
   setTimeout(()=>showScreen("screen-quiz-prompt"),3500);
 }
@@ -73,7 +68,7 @@ function startQuiz(){
 function loadQuiz(){
   if(quizIndex>=quizPool.length){
     showScreen("screen-quiz-result");
-    document.getElementById("final-score").textContent=`You scored ${quizScore} / 5 🌍`;
+    document.getElementById("final-score").textContent=`You scored ${quizScore}/5 🌍`;
     return;
   }
   const q = quizPool[quizIndex];
@@ -89,7 +84,7 @@ function loadQuiz(){
       clearInterval(timer);
       quizIndex++;
       loadQuiz();
-    }
+    };
     opts.appendChild(btn);
   });
 
@@ -107,20 +102,11 @@ function loadQuiz(){
   },1000);
 }
 
-function restartEco(){
-  qIndex=0; totalScore=0;
-  showScreen("screen-questions");
-  loadQuestion();
-}
-
+/* RESTART APP */
+function restartEco(){ qIndex=0; totalScore=0; showScreen("screen-questions"); loadQuestion(); }
 function showOutro(){ showScreen("screen-outro"); }
 
-function shuffle(arr){
-  for(let i=arr.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [arr[i],arr[j]]=[arr[j],arr[i]];
-  }
-  return arr;
-}
+/* SHUFFLE ARRAY */
+function shuffle(arr){ for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]]; } return arr; }
 
 loadQuestion();
