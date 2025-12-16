@@ -1,5 +1,5 @@
 let qIndex = 0;
-let score = 0;
+let ecoWeight = 0;
 
 const screens = document.querySelectorAll(".screen");
 const questionEl = document.getElementById("question");
@@ -21,10 +21,10 @@ function loadQuestion() {
     const btn = document.createElement("button");
     btn.textContent = opt;
     btn.onclick = () => {
-      score += q.scores[i];
+      ecoWeight += q.weights[i];
       qIndex++;
       if (qIndex < evaluationQuestions.length) loadQuestion();
-      else setTimeout(showTree, 400);
+      else setTimeout(showEnvironment, 400);
     };
     optionsEl.appendChild(btn);
   });
@@ -32,21 +32,33 @@ function loadQuestion() {
   progressEl.textContent = `Step ${qIndex + 1} of ${evaluationQuestions.length}`;
 }
 
-/* TREE RESULT */
-function showTree() {
+/* ENVIRONMENT RESULT */
+function showEnvironment() {
   showScreen("screen-tree");
 
-  const ecoScore = Math.min(100, score * 2.5);
-  const trunkHeight = ecoScore + 40;
-  const leafSize = ecoScore + 60;
+  // Accurate eco score (0-100)
+  const ecoScore = Math.round((ecoWeight / evaluationQuestions.length) * 100);
 
-  document.documentElement.style.setProperty("--trunk-height", trunkHeight + "px");
-  document.documentElement.style.setProperty("--leaf-size", leafSize + "px");
+  const plant = document.querySelector(".plant");
+  const sun = document.querySelector(".sun");
+  const birds = document.querySelector(".birds");
 
-  const leaves = document.querySelector(".leaves");
-  leaves.classList.toggle("glow", ecoScore >= 75);
+  // Animate environment based on score
+  plant.style.height = 20 + ecoScore + "px";
+  plant.querySelector("::after")?.remove(); // remove old leaf
+  plant.style.backgroundColor = "#2e7d32";
+  if (ecoScore >= 40) {
+    plant.style.setProperty("--leaf-opacity", 1);
+    plant.style.setProperty("--leaf-height", ecoScore/2 + "px");
+  }
 
-  document.getElementById("eco-score").textContent = `Eco Score: ${Math.round(ecoScore)}/100`;
+  sun.style.width = ecoScore >= 60 ? "40px" : "0px";
+  sun.style.height = ecoScore >= 60 ? "40px" : "0px";
+  sun.style.opacity = ecoScore >= 60 ? 1 : 0;
+
+  birds.style.opacity = ecoScore >= 80 ? 1 : 0;
+
+  document.getElementById("eco-score").textContent = `Eco Score: ${ecoScore}/100`;
   document.getElementById("recommendation").textContent =
     ecoScore < 60
       ? "Try reusable products and minimal packaging 🌿"
@@ -112,7 +124,7 @@ function loadQuiz() {
 /* RESTART WITHOUT QUIZ */
 function restartEco() {
   qIndex = 0;
-  score = 0;
+  ecoWeight = 0;
   showScreen("screen-questions");
   loadQuestion();
 }
