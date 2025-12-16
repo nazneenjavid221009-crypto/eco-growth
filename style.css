@@ -45,40 +45,73 @@ button:hover {
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* TREE */
-.tree {
+/* ========================
+   ENVIRONMENT ANIMATION
+======================== */
+.environment {
   position: relative;
-  width: 160px;
-  height: 260px;
+  width: 200px;
+  height: 200px;
   margin: 30px auto;
 }
 
-.trunk {
+.ground {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  width: 30px;
-  height: var(--trunk-height);
-  background: #6d4c41;
-  transform: translateX(-50%);
-  border-radius: 10px;
-  transition: height 1.5s ease;
+  width: 100%;
+  height: 20px;
+  background: #3b2f2f;
+  border-radius: 10px 10px 0 0;
 }
 
-.leaves {
+.plant {
   position: absolute;
-  bottom: var(--trunk-height);
+  bottom: 20px;
   left: 50%;
-  width: var(--leaf-size);
-  height: var(--leaf-size);
-  background: radial-gradient(circle, #7cff9b, #2e7d32);
+  width: 10px;
+  height: 0;
+  background: #2e7d32;
   transform: translateX(-50%);
-  border-radius: 50%;
+  border-radius: 5px;
   transition: all 1.5s ease;
 }
 
-.glow {
-  box-shadow: 0 0 40px #7cff9b;
+.plant::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #4caf50;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.sun {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffec61, #f32121);
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.birds {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: opacity 1.5s;
 }
 
 @keyframes fade {
