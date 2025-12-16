@@ -5,22 +5,22 @@ const evaluationQuestions = [
   {
     q: "Product type?",
     options: ["Plastic", "Paper", "Metal", "Glass"],
-    weights: [0.2, 0.5, 0.8, 0.9] // weight on eco friendliness
+    scores: [5, 15, 25, 30] // Higher score = more eco friendly
   },
   {
     q: "Reusability?",
     options: ["Single-use", "Limited reuse", "Fully reusable"],
-    weights: [0, 0.5, 1]
+    scores: [0, 10, 25]
   },
   {
     q: "Recyclability?",
     options: ["Not recyclable", "Partially recyclable", "Fully recyclable"],
-    weights: [0, 0.5, 1]
+    scores: [0, 10, 25]
   },
   {
     q: "Packaging type?",
     options: ["Plastic-heavy", "Mixed", "Eco-friendly"],
-    weights: [0, 0.5, 1]
+    scores: [0, 10, 20]
   }
 ];
 
@@ -67,4 +67,10 @@ const quizQuestions = [
   { q: "Metal can be recycled multiple times.", a: true },
   { q: "Environmental awareness starts with individuals.", a: true },
   { q: "Landfills are harmless to the environment.", a: false },
-  { q: "Choosing durable products reduces waste.", a: t
+  { q: "Choosing durable products reduces waste.", a: true },
+  { q: "Reducing waste is better than managing waste.", a: true },
+  { q: "Nature can recover faster if pollution is reduced.", a: true },
+  { q: "Every eco-friendly action makes a difference.", a: true },
+  { q: "Sustainable living is only for scientists.", a: false },
+  { q: "Small daily choices impact the planet.", a: true }
+];
