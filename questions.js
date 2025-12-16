@@ -1,0 +1,84 @@
+/* ================================
+   PRODUCT EVALUATION QUESTIONS
+================================ */
+const evaluationQuestions = [
+  {
+    q: "Product type?",
+    options: ["Plastic", "Paper", "Metal", "Glass"],
+    scores: [5, 15, 20, 20]
+  },
+  {
+    q: "Reusability?",
+    options: ["Single-use", "Limited reuse", "Fully reusable"],
+    scores: [0, 10, 20]
+  },
+  {
+    q: "Recyclability?",
+    options: ["Not recyclable", "Partially recyclable", "Fully recyclable"],
+    scores: [0, 10, 20]
+  },
+  {
+    q: "Packaging type?",
+    options: ["Plastic-heavy", "Mixed", "Eco-friendly"],
+    scores: [0, 10, 20]
+  }
+];
+
+/* ================================
+   RAPID FIRE QUIZ – 50 QUESTIONS
+================================ */
+const quizQuestions = [
+  { q: "Plastic can take hundreds of years to decompose.", a: true },
+  { q: "Glass can be recycled infinitely without quality loss.", a: true },
+  { q: "Paper cannot be recycled.", a: false },
+  { q: "Metal recycling saves large amounts of energy.", a: true },
+  { q: "Food waste in landfills produces methane gas.", a: true },
+
+  { q: "Reusable bags reduce plastic pollution.", a: true },
+  { q: "Single-use plastics are environmentally friendly.", a: false },
+  { q: "Turning off lights saves energy.", a: true },
+  { q: "Electronic waste contains toxic materials.", a: true },
+  { q: "Composting reduces landfill waste.", a: true },
+
+  { q: "Renewable energy comes from fossil fuels.", a: false },
+  { q: "LED bulbs use less electricity than incandescent bulbs.", a: true },
+  { q: "Saving water also saves energy.", a: true },
+  { q: "Plastic pollution affects marine life.", a: true },
+  { q: "Recycling helps conserve natural resources.", a: true },
+
+  { q: "Fast fashion increases environmental pollution.", a: true },
+  { q: "Glass bottles are worse than plastic in all cases.", a: false },
+  { q: "Using public transport can reduce carbon emissions.", a: true },
+  { q: "Planting trees helps fight climate change.", a: true },
+  { q: "Recycling alone can solve pollution completely.", a: false },
+
+  { q: "Eco-friendly packaging reduces waste.", a: true },
+  { q: "Plastic straws are easily biodegradable.", a: false },
+  { q: "Buying local products can reduce carbon footprint.", a: true },
+  { q: "Overconsumption harms the environment.", a: true },
+  { q: "Natural resources are unlimited.", a: false },
+
+  { q: "Reusing products is better than recycling them.", a: true },
+  { q: "Glass is safer for reuse than many plastics.", a: true },
+  { q: "Burning waste is the cleanest disposal method.", a: false },
+  { q: "Oceans absorb a large amount of carbon dioxide.", a: true },
+  { q: "Plastic pollution can enter the food chain.", a: true },
+
+  { q: "Paper bags always have zero environmental impact.", a: false },
+  { q: "Energy conservation helps reduce climate change.", a: true },
+  { q: "Using refillable containers reduces waste.", a: true },
+  { q: "Most plastics are recycled worldwide.", a: false },
+  { q: "Eco-friendly choices can influence others.", a: true },
+
+  { q: "Waste segregation improves recycling efficiency.", a: true },
+  { q: "Metal can be recycled multiple times.", a: true },
+  { q: "Environmental awareness starts with individuals.", a: true },
+  { q: "Landfills are harmless to the environment.", a: false },
+  { q: "Choosing durable products reduces waste.", a: true },
+
+  { q: "Reducing waste is better than managing waste.", a: true },
+  { q: "Nature can recover faster if pollution is reduced.", a: true },
+  { q: "Every eco-friendly action makes a difference.", a: true },
+  { q: "Sustainable living is only for scientists.", a: false },
+  { q: "Small daily choices impact the planet.", a: true }
+];

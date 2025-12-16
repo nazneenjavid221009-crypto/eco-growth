@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1b3a2b, #08140e);
+  color: #eaffea;
+  text-align: center;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 40px 20px;
+  animation: fade 0.6s ease;
+}
+
+.screen.active {
+  display: block;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 10px auto;
+  padding: 15px;
+  border-radius: 14px;
+  border: none;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #3fa34d, #2c6e49);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* TREE */
+.tree {
+  position: relative;
+  width: 160px;
+  height: 260px;
+  margin: 30px auto;
+}
+
+.trunk {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 30px;
+  height: var(--trunk-height);
+  background: #6d4c41;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  transition: height 1.5s ease;
+}
+
+.leaves {
+  position: absolute;
+  bottom: var(--trunk-height);
+  left: 50%;
+  width: var(--leaf-size);
+  height: var(--leaf-size);
+  background: radial-gradient(circle, #7cff9b, #2e7d32);
+  transform: translateX(-50%);
+  border-radius: 50%;
+  transition: all 1.5s ease;
+}
+
+.glow {
+  box-shadow: 0 0 40px #7cff9b;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

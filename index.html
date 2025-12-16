@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EcoGrow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- SCREEN 1: PRODUCT QUESTIONS -->
+  <section class="screen active" id="screen-questions">
+    <h1>🌱 EcoGrow</h1>
+    <p id="question"></p>
+    <div id="options"></div>
+    <div id="progress"></div>
+  </section>
+
+  <!-- SCREEN 2: TREE RESULT -->
+  <section class="screen" id="screen-tree">
+    <h2>Your Eco Impact</h2>
+
+    <div class="tree">
+      <div class="leaves"></div>
+      <div class="trunk"></div>
+    </div>
+
+    <p id="eco-score"></p>
+    <p id="recommendation"></p>
+  </section>
+
+  <!-- SCREEN 3: QUIZ PROMPT -->
+  <section class="screen" id="screen-quiz-prompt">
+    <h2>Want to try a rapid eco quiz?</h2>
+    <div class="btn-group">
+      <button onclick="startQuiz()">Yes 🌍</button>
+      <button onclick="showOutro()">No 🌱</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 4: QUIZ -->
+  <section class="screen" id="screen-quiz">
+    <h2 id="quiz-question"></h2>
+    <div id="quiz-options"></div>
+    <p id="timer"></p>
+  </section>
+
+  <!-- SCREEN 5: QUIZ RESULT -->
+  <section class="screen" id="screen-quiz-result">
+    <h2 id="final-score"></h2>
+    <div class="btn-group">
+      <button onclick="restartEco()">Check another product 🌱</button>
+      <button onclick="showOutro()">Exit</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: OUTRO -->
+  <section class="screen" id="screen-outro">
+    <h2>Thank You 💚</h2>
+    <p>Every small choice grows a greener future.</p>
+  </section>
+
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
