@@ -6,7 +6,7 @@ const evaluationQuestions = [
   { q: "Packaging type?", options: ["Plastic-heavy", "Mixed", "Eco-friendly"], scores: [0, 10, 20] }
 ];
 
-// RAPID FIRE QUIZ – 50 QUESTIONS
+// QUIZ 50 QUESTIONS
 const quizQuestions = [
   { q: "Plastic can take hundreds of years to decompose.", a: true },
   { q: "Glass can be recycled infinitely without quality loss.", a: true },
