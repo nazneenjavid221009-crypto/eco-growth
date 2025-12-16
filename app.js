@@ -1,5 +1,5 @@
 let qIndex = 0;
-let ecoWeight = 0;
+let totalScore = 0;
 
 const screens = document.querySelectorAll(".screen");
 const questionEl = document.getElementById("question");
@@ -21,7 +21,7 @@ function loadQuestion() {
     const btn = document.createElement("button");
     btn.textContent = opt;
     btn.onclick = () => {
-      ecoWeight += q.weights[i];
+      totalScore += q.scores[i]; // Accumulate weighted scores
       qIndex++;
       if (qIndex < evaluationQuestions.length) loadQuestion();
       else setTimeout(showEnvironment, 400);
@@ -36,27 +36,23 @@ function loadQuestion() {
 function showEnvironment() {
   showScreen("screen-tree");
 
-  // Accurate eco score (0-100)
-  const ecoScore = Math.round((ecoWeight / evaluationQuestions.length) * 100);
+  // Maximum possible score
+  const maxScore = evaluationQuestions.reduce((sum, q) => sum + Math.max(...q.scores), 0);
+  const ecoScore = Math.round((totalScore / maxScore) * 100);
 
   const plant = document.querySelector(".plant");
   const sun = document.querySelector(".sun");
   const birds = document.querySelector(".birds");
 
-  // Animate environment based on score
+  // Animate environment
   plant.style.height = 20 + ecoScore + "px";
-  plant.querySelector("::after")?.remove(); // remove old leaf
-  plant.style.backgroundColor = "#2e7d32";
-  if (ecoScore >= 40) {
-    plant.style.setProperty("--leaf-opacity", 1);
-    plant.style.setProperty("--leaf-height", ecoScore/2 + "px");
-  }
+  plant.querySelector("::after")?.remove();
 
-  sun.style.width = ecoScore >= 60 ? "40px" : "0px";
-  sun.style.height = ecoScore >= 60 ? "40px" : "0px";
-  sun.style.opacity = ecoScore >= 60 ? 1 : 0;
-
-  birds.style.opacity = ecoScore >= 80 ? 1 : 0;
+  if (ecoScore >= 30) plant.style.backgroundColor = "#2e7d32";
+  if (ecoScore >= 50) sun.style.opacity = 1;
+  else sun.style.opacity = 0;
+  if (ecoScore >= 80) birds.style.opacity = 1;
+  else birds.style.opacity = 0;
 
   document.getElementById("eco-score").textContent = `Eco Score: ${ecoScore}/100`;
   document.getElementById("recommendation").textContent =
@@ -124,7 +120,7 @@ function loadQuiz() {
 /* RESTART WITHOUT QUIZ */
 function restartEco() {
   qIndex = 0;
-  ecoWeight = 0;
+  totalScore = 0;
   showScreen("screen-questions");
   loadQuestion();
 }
